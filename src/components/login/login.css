@@ -1,0 +1,18 @@
+.form__container {
+  width: 100%;
+  background-color: #e7f2f8;
+  height: 95vh;
+}
+
+.form_success,
+.form_error {
+  text-align: center;
+}
+
+.form_error {
+  color: #f00;
+}
+
+.form_success {
+  color: #00f;
+}
