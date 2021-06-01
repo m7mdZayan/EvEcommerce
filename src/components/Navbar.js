@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: "#fff",
   },
   Button: {
     marginRight: theme.spacing(2),
@@ -39,13 +40,15 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            ECommerce App
+            <Link to="/" className={classes.title}>
+              ECommerce App
+            </Link>
           </Typography>
           <Button variant="contained" className={classes.Button}>
             <Link to="/login">Login</Link>
           </Button>
           <Button variant="contained">
-            <Link to="signup">Sign up</Link>
+            <Link to="/signup">Sign up</Link>
           </Button>
         </Toolbar>
       </AppBar>

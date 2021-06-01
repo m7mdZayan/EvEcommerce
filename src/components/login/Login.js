@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./login.css";
 import axios from "axios";
+import { userContext } from "../../context/userContext";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
+  const [userData, setUserData] = useContext(userContext);
+  let history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,13 +48,14 @@ const Login = () => {
         "http://localhost:3000/api/login",
         loginData
       );
-      console.log(res.data);
-      //   localStorage.setItem("userToken", res.data.userToken);
-      //   localStorage.setItem("authenticated", true);
-      //   history.push("/");
-      //   console.log(res.data.userToken);
+      setUserData((d) => ({
+        authenticated: true,
+        userToken: res.data.userToken,
+      }));
+      history.push("/");
     } catch (e) {
-      seterrorMessage(e.response.data.message);
+      seterrorMessage(e.response);
+      console.log(e);
       setshowErrorMessage(true);
     }
   };
