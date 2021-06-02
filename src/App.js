@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
 import { UserContextProvider } from "./context/userContext";
+import Categories from "./components/categories/Categories";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -20,9 +22,10 @@ function App() {
             <Login />
           </Route>
           <Route path="/">
-            <div>hello</div>
+            <Categories />
           </Route>
         </Switch>
+        <Footer />
       </UserContextProvider>
     </BrowserRouter>
   );
