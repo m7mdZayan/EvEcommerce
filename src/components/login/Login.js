@@ -51,6 +51,7 @@ const Login = () => {
       setUserData((d) => ({
         authenticated: true,
         userToken: res.data.userToken,
+        userName: res.data.userName,
       }));
       history.push("/");
     } catch (e) {

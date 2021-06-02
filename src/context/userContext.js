@@ -6,6 +6,7 @@ export const UserContextProvider = ({ children }) => {
   const [userData, setUserData] = useState({
     userToken: "",
     authenticated: false,
+    userName: "",
   });
 
   return (
