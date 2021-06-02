@@ -8,9 +8,6 @@ const Footer = () => {
         textAlign: "center",
         color: "#fff",
         padding: "10px",
-        position: "fixed",
-        bottom: "0",
-        width: "100%",
       }}
     >
       <p>All Rights Are Reserved &copy; </p>

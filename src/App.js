@@ -5,6 +5,8 @@ import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
 import { UserContextProvider } from "./context/userContext";
 import Categories from "./components/categories/Categories";
+// import Product from "./components/product/Product";
+import ProductsContainer from "./containers/productsContainer.js/ProductsContainer";
 import Footer from "./components/footer/Footer";
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
           </Route>
           <Route path="/">
             <Categories />
+            <ProductsContainer />
           </Route>
         </Switch>
         <Footer />
