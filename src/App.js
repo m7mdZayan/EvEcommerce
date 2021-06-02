@@ -1,11 +1,10 @@
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
 import { UserContextProvider } from "./context/userContext";
 import Categories from "./components/categories/Categories";
-// import Product from "./components/product/Product";
 import ProductsContainer from "./containers/productsContainer.js/ProductsContainer";
 import Footer from "./components/footer/Footer";
 
@@ -13,9 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <UserContextProvider>
-        <div className="App">
-          <Navbar />
-        </div>
+        <Navbar />
         <Switch>
           <Route path="/signup">
             <Signup />

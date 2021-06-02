@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
+import { userContext } from "../../context/userContext";
 
 const useStyles = makeStyles({
   root: {
@@ -18,6 +19,8 @@ const useStyles = makeStyles({
 
 function Product({ name, description, price, photo }) {
   const classes = useStyles();
+
+  const [userData] = useContext(userContext);
 
   return (
     <Card className={classes.root}>
@@ -41,7 +44,12 @@ function Product({ name, description, price, photo }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" variant="contained">
+        <Button
+          disabled={!userData.authenticated}
+          size="small"
+          color="primary"
+          variant="contained"
+        >
           Add to Cart
         </Button>
         <Badge
