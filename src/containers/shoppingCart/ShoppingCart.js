@@ -19,9 +19,11 @@ const useStyles = makeStyles({
 const ShoppingCart = () => {
   const [userData, setUserData] = useContext(userContext);
   const [products, setProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     setProducts(userData.userCart);
+    calcTotalPrice();
   }, [userData]);
 
   const classes = useStyles();
@@ -29,6 +31,7 @@ const ShoppingCart = () => {
   const increaseQuantity = (product) => {
     product.amount++;
     setUserData({ ...userData, userCart: products });
+    calcTotalPrice();
   };
 
   const decreaseQuantity = (product) => {
@@ -42,8 +45,16 @@ const ShoppingCart = () => {
       setUserData({ ...userData, userCart: products });
     }
     console.log(products);
+    calcTotalPrice();
   };
 
+  const calcTotalPrice = () => {
+    let checkoutPrice = 0;
+    userData.userCart.forEach((product) => {
+      checkoutPrice += product.price * product.amount;
+    });
+    setTotalPrice(checkoutPrice);
+  };
   return (
     <div style={{ minHeight: "75vh", padding: " 20px 0 " }}>
       {products.length > 0 ? (
@@ -94,6 +105,26 @@ const ShoppingCart = () => {
                   <TableCell> {product.price * product.amount} EGP</TableCell>
                 </TableRow>
               ))}
+              <TableRow>
+                <TableCell
+                  colSpan="6"
+                  align="center"
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                  }}
+                >
+                  Total Price = {totalPrice} EGP
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => decreaseQuantity()}
+                    style={{ marginLeft: "20px" }}
+                  >
+                    Checkout
+                  </Button>
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
