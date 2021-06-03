@@ -7,6 +7,7 @@ export const UserContextProvider = ({ children }) => {
     userToken: "",
     authenticated: false,
     userName: "",
+    userCart: [],
   });
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -17,10 +17,17 @@ const useStyles = makeStyles({
   },
 });
 
-function Product({ name, description, price, photo }) {
+function Product({ product }) {
   const classes = useStyles();
 
   const [userData] = useContext(userContext);
+  const [disableButton, setDisableButton] = useState(false);
+
+  const addToCart = (product) => {
+    product.amount = 1;
+    userData.userCart.push(product);
+    setDisableButton(true);
+  };
 
   return (
     <Card className={classes.root}>
@@ -29,26 +36,27 @@ function Product({ name, description, price, photo }) {
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image={photo}
+          image={product.photo}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {name}
+            {product.name}
             {/* Prdouct name   */}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {description}
+            {product.description}
             {/* Prdouct description   */}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button
-          disabled={!userData.authenticated}
+          disabled={!userData.authenticated || disableButton}
           size="small"
           color="primary"
           variant="contained"
+          onClick={() => addToCart(product)}
         >
           Add to Cart
         </Button>
@@ -58,7 +66,7 @@ function Product({ name, description, price, photo }) {
             right: "12%",
             bottom: "8%",
           }}
-          badgeContent={price + "EGP"}
+          badgeContent={product.price + "EGP"}
           color="secondary"
         ></Badge>
       </CardActions>

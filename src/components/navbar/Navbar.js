@@ -32,7 +32,12 @@ export default function Navbar() {
   let history = useHistory();
 
   const handleLogout = () => {
-    setUserData({ userToken: "", authenticated: false, userName: "" });
+    setUserData({
+      userToken: "",
+      authenticated: false,
+      userName: "",
+      userCart: [],
+    });
     history.push("/");
   };
 
@@ -69,7 +74,7 @@ export default function Navbar() {
                 Hello, {userData.userName}
               </Typography>
               <Button variant="contained" className={classes.Button}>
-                <Link to="/login">Shopping Cart</Link>
+                <Link to="/shopping-cart">Shopping Cart</Link>
               </Button>
               <Button variant="contained" onClick={handleLogout}>
                 Log out

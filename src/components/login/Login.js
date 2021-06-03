@@ -52,6 +52,7 @@ const Login = () => {
         authenticated: true,
         userToken: res.data.userToken,
         userName: res.data.userName,
+        userCart: [],
       }));
       history.push("/");
     } catch (e) {

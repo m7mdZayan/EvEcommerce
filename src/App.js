@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
@@ -6,6 +7,7 @@ import Login from "./components/login/Login";
 import { UserContextProvider } from "./context/userContext";
 import Categories from "./components/categories/Categories";
 import ProductsContainer from "./containers/productsContainer.js/ProductsContainer";
+import ShoppingCart from "./containers/shoppingCart/ShoppingCart";
 import Footer from "./components/footer/Footer";
 
 function App() {
@@ -14,13 +16,17 @@ function App() {
       <UserContextProvider>
         <Navbar />
         <Switch>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <Signup />
           </Route>
-          <Route path="/login">
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route path="/">
+          <Route exact path="/shopping-cart">
+            <Categories />
+            <ShoppingCart />
+          </Route>
+          <Route exact path="/">
             <Categories />
             <ProductsContainer />
           </Route>
