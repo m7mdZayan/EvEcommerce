@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Button } from "@material-ui/core";
+import axios from "axios";
 
 const useStyles = makeStyles({
   table: {
@@ -38,14 +39,34 @@ const ShoppingCart = () => {
     if (product.amount === 1) {
       let newProducts = products.filter((pro) => pro._id !== product._id);
       setProducts(newProducts);
-      console.log(products);
       setUserData({ ...userData, userCart: newProducts });
     } else {
       product.amount--;
       setUserData({ ...userData, userCart: products });
     }
-    console.log(products);
     calcTotalPrice();
+  };
+
+  const submitOrder = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/orders",
+        {
+          totalPrice,
+          products,
+        },
+        {
+          headers: {
+            "x-auth-token": userData.userToken,
+          },
+        }
+      );
+      alert(" your ordered has been submitted successfully :) ");
+      setProducts([]);
+      userData.userCart = [];
+    } catch (e) {
+      console.log(e.response.message);
+    }
   };
 
   const calcTotalPrice = () => {
@@ -118,8 +139,8 @@ const ShoppingCart = () => {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => decreaseQuantity()}
                     style={{ marginLeft: "20px" }}
+                    onClick={submitOrder}
                   >
                     Checkout
                   </Button>

@@ -56,8 +56,8 @@ const Login = () => {
       }));
       history.push("/");
     } catch (e) {
-      seterrorMessage(e.response);
-      console.log(e);
+      seterrorMessage(e.response.data.message);
+      console.log(e.response.data.message);
       setshowErrorMessage(true);
     }
   };
