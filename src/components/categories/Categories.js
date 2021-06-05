@@ -3,7 +3,7 @@ import "./categories.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Categories = () => {
+const Categories = ({ getCategoryId }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => getCategories(), []);
@@ -17,8 +17,8 @@ const Categories = () => {
     <nav className="categories__nav">
       <ul>
         {categories.map((category) => (
-          <li key={category._id}>
-            <Link to={category.name} style={{ color: "#fff" }}>
+          <li key={category._id} onClick={() => getCategoryId(category._id)}>
+            <Link to={`/category/${category.name}`} style={{ color: "#fff" }}>
               {category.name}
             </Link>
           </li>

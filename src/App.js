@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
@@ -8,9 +8,17 @@ import { UserContextProvider } from "./context/userContext";
 import Categories from "./components/categories/Categories";
 import ProductsContainer from "./containers/productsContainer.js/ProductsContainer";
 import ShoppingCart from "./containers/shoppingCart/ShoppingCart";
+import CategoryContainer from "./containers/categoryContainer/CategoryContainer";
+
 import Footer from "./components/footer/Footer";
 
 function App() {
+  const [categoryId, setCategoryId] = useState("");
+
+  const getCategoryId = (category_id) => {
+    setCategoryId(category_id);
+  };
+
   return (
     <BrowserRouter>
       <UserContextProvider>
@@ -23,11 +31,15 @@ function App() {
             <Login />
           </Route>
           <Route exact path="/shopping-cart">
-            <Categories />
+            <Categories getCategoryId={getCategoryId} />
             <ShoppingCart />
           </Route>
+          <Route path="/category">
+            <Categories getCategoryId={getCategoryId} />
+            <CategoryContainer categoryId={categoryId} />
+          </Route>
           <Route exact path="/">
-            <Categories />
+            <Categories getCategoryId={getCategoryId} />
             <ProductsContainer />
           </Route>
         </Switch>
