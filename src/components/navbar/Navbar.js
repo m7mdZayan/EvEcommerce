@@ -81,6 +81,9 @@ export default function Navbar() {
               <Button variant="contained" className={classes.Button}>
                 <Link to="/shopping-cart">Shopping Cart</Link>
               </Button>
+              <Button variant="contained" className={classes.Button}>
+                <Link to="/myorders">My Orders</Link>
+              </Button>
               <Button variant="contained" onClick={handleLogout}>
                 Log out
               </Button>

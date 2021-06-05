@@ -9,6 +9,7 @@ import Categories from "./components/categories/Categories";
 import ProductsContainer from "./containers/productsContainer.js/ProductsContainer";
 import ShoppingCart from "./containers/shoppingCart/ShoppingCart";
 import CategoryContainer from "./containers/categoryContainer/CategoryContainer";
+import Orders from "./containers/orders/Orders";
 
 import Footer from "./components/footer/Footer";
 
@@ -37,6 +38,10 @@ function App() {
           <Route path="/category">
             <Categories getCategoryId={getCategoryId} />
             <CategoryContainer categoryId={categoryId} />
+          </Route>
+          <Route exact path="/myorders">
+            <Categories getCategoryId={getCategoryId} />
+            <Orders />
           </Route>
           <Route exact path="/">
             <Categories getCategoryId={getCategoryId} />
