@@ -26,6 +26,7 @@ function Product({ product }) {
   const addToCart = (product) => {
     product.amount = 1;
     userData.userCart.push(product);
+    localStorage.setItem("userCart", JSON.stringify(userData.userCart));
     setDisableButton(true);
   };
 

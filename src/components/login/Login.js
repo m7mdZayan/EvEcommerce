@@ -54,6 +54,11 @@ const Login = () => {
         userName: res.data.userName,
         userCart: [],
       }));
+      localStorage.setItem("authenticated", true);
+      localStorage.setItem("userToken", res.data.userToken);
+      localStorage.setItem("userName", res.data.userName);
+      localStorage.setItem("userCart", JSON.stringify([]));
+
       history.push("/");
     } catch (e) {
       seterrorMessage(e.response.data.message);

@@ -32,6 +32,7 @@ const ShoppingCart = () => {
   const increaseQuantity = (product) => {
     product.amount++;
     setUserData({ ...userData, userCart: products });
+    localStorage.setItem("userCart", JSON.stringify(userData.userCart));
     calcTotalPrice();
   };
 
@@ -40,9 +41,11 @@ const ShoppingCart = () => {
       let newProducts = products.filter((pro) => pro._id !== product._id);
       setProducts(newProducts);
       setUserData({ ...userData, userCart: newProducts });
+      localStorage.setItem("userCart", JSON.stringify(newProducts));
     } else {
       product.amount--;
       setUserData({ ...userData, userCart: products });
+      localStorage.setItem("userCart", JSON.stringify(userData.userCart));
     }
     calcTotalPrice();
   };
@@ -64,6 +67,7 @@ const ShoppingCart = () => {
       alert(" your ordered has been submitted successfully :) ");
       setProducts([]);
       userData.userCart = [];
+      localStorage.setItem("userCart", JSON.stringify(userData.userCart));
     } catch (e) {
       console.log(e.response.message);
     }

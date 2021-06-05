@@ -38,6 +38,11 @@ export default function Navbar() {
       userName: "",
       userCart: [],
     });
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("authenticated");
+    localStorage.removeItem("userCart");
+
     history.push("/");
   };
 
